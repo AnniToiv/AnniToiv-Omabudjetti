@@ -3,7 +3,7 @@ import Item from '../Item'
 import styles from './App.module.scss'
 
 function App() {
-  
+
     return (
     <>
       <div className={styles.app}>
@@ -14,5 +14,5 @@ function App() {
       </div>
     </>
   )
-
+}
 export default App
