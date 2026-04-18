@@ -1,3 +1,5 @@
+import { MdViewList } from 'react-icons/md'
+
 import styles from './Menu.module.scss'
 
 /**
@@ -15,7 +17,7 @@ function Menu() {
 
   return (
     <div className={styles.menu}>
-      <div>list</div>
+      <div><MdViewList /></div>
       <div>stats</div>
       <div>profile</div>
     </div>
