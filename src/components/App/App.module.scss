@@ -1,4 +1,13 @@
 
+.app {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  max-width: 38rem;
+  margin: 0 auto;
+}
+
 
 .app > * {
   flex: 1 1 auto;
