@@ -1,5 +1,7 @@
 
 @use './' as theme;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 
 /* Mimimal CSS reset */
 
@@ -38,4 +40,14 @@ body {
   font-style: normal;
   background-color: theme.$color-neutral-lightest;
   color: theme.$color-neutral-darkest;
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+h1 span {
+  opacity: 0.7;
 }
