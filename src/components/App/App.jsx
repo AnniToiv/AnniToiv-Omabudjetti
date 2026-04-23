@@ -1,3 +1,5 @@
+import Button from '../../shared/ui/buttons'
+
 import Content from '../Content'
 
 import Menu from '../Menu'
@@ -19,6 +21,13 @@ function App() {
           <Item />
           <Item />
           <Item />
+                  <Content>
+          <Item />
+          <Item />
+          <Item />
+          <Item />
+          <Button>LISÄÄ UUSI RIVI</Button>
+        </Content>
         </Content>
         <Menu />
       </div>
