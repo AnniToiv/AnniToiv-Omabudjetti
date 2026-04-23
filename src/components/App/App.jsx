@@ -1,3 +1,5 @@
+import { FloatingButton } from '../../shared/ui/buttons'
+
 import Button from '../../shared/ui/buttons'
 
 import Content from '../Content'
@@ -26,7 +28,7 @@ function App() {
           <Item />
           <Item />
           <Item />
-          <Button secondary>LISÄÄ UUSI RIVI</Button>
+          <FloatingButton secondary>+</FloatingButton>
         </Content>
         </Content>
         <Menu />
