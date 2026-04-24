@@ -1,3 +1,5 @@
+import Stats from '../../pages/Stats'
+
 import Items from '../../pages/Items'
 
 import { ButtonContainer, FloatingButton } from '../../shared/ui/buttons'
@@ -20,7 +22,7 @@ function App() {
       <div className={styles.app}>
         <Header />
         <Content>
-        <Items />
+        <Stats />
         </Content>
         <Menu />
       </div>
