@@ -1,3 +1,5 @@
+import Settings from '../../pages/Settings'
+
 import Stats from '../../pages/Stats'
 
 import Items from '../../pages/Items'
@@ -22,7 +24,7 @@ function App() {
       <div className={styles.app}>
         <Header />
         <Content>
-        <Stats />
+        <Settings />
         </Content>
         <Menu />
       </div>
