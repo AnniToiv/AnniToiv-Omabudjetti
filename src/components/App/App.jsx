@@ -1,4 +1,4 @@
-import { FloatingButton } from '../../shared/ui/buttons'
+import { ButtonContainer, FloatingButton } from '../../shared/ui/buttons'
 
 import Button from '../../shared/ui/buttons'
 
@@ -14,8 +14,9 @@ import styles from './App.module.scss'
 
 function App() {
 
-  return (
+    return (
     <>
+      <ButtonContainer>
       <div className={styles.app}>
         <Header />
         <Content>
@@ -23,17 +24,13 @@ function App() {
           <Item />
           <Item />
           <Item />
-                  <Content>
-          <Item />
-          <Item />
-          <Item />
-          <Item />
           <FloatingButton secondary>+</FloatingButton>
-        </Content>
         </Content>
         <Menu />
       </div>
+      </ButtonContainer>
     </>
   )
 }
+
 export default App
