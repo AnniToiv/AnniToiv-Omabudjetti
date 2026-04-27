@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router'
+
 import { MdViewList } from 'react-icons/md'
 
 import styles from './Menu.module.scss'
@@ -17,9 +19,9 @@ function Menu() {
 
   return (
     <div className={styles.menu}>
-      <div><MdViewList /></div>
-      <div>stats</div>
-      <div>profile</div>
+      <div><NavLink to=""><MdViewList /></NavLink></div>
+      <div><NavLink to="/stats"><MdTimeline /></NavLink></div>
+      <div><NavLink to="/settings"><MdSettings /></NavLink></div>
     </div>
   )
 
