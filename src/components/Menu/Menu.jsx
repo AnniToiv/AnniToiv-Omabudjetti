@@ -1,3 +1,5 @@
+import { MdTimeline, MdSettings } from 'react-icons/md'
+
 import { NavLink } from 'react-router'
 
 import { MdViewList } from 'react-icons/md'
