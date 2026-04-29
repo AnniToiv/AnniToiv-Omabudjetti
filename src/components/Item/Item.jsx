@@ -12,6 +12,7 @@ function Item({data, ...props}) {
   const paymentDate = new Date(data.paymentDate).toLocaleDateString(locale)
 
  return (
+         <div className={styles.item}>
          <div className={styles.item_data}>
         <div className={styles.item_type}>{data.type}</div>
         <div className={styles.item_amount}>{data.amount} €</div>
