@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router'
+import { Link, useLoaderData } from 'react-router'
 import styles from './Items.module.scss'
 import { FloatingButton } from '../../shared/ui/buttons'
 import Item from '../../components/Item'
@@ -22,7 +22,8 @@ function Items() {
     return (
     <div className={styles.items}>
       { items }
-      <FloatingButton secondary>+</FloatingButton>
+    <Link to="/add" viewTransition><FloatingButton secondary>+</FloatingButton></Link>
+
     </div>
   )
 }
