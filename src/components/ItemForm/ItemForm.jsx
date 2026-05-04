@@ -81,5 +81,6 @@ function ItemForm(props) {
         </form>
       )
     }
+  }
 
 export default ItemForm
