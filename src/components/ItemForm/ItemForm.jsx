@@ -1,12 +1,21 @@
+import { useNavigate } from 'react-router'
 import Button from '../../shared/ui/buttons'
 import useForm from '../../shared/hooks/useform'
 import styles from './ItemForm.module.scss'
 
 function ItemForm(props) {
     // Lomakkeen varsinainen submit-toiminto
+    // Lomakkeen varsinainen submit-toiminto, kutsuu
+  // App-komponentilta välitettyä handleItemSubmit-funtiota
+  // ja palaa edelliseen näkymään.
+  // Lomakkeen varsinainen submit-toiminto, kutsuu 
+  // App-komponentilta välitettyä handleItemSubmit-funtiota
+  // ja palaa edelliseen näkymään.
   const submit = () => {
-    console.log(values)
-    alert("SUBMIT")
+    let storedValues = Object.assign({}, values)
+    storedValues.amount = parseFloat(storedValues.amount)
+    props.onItemSubmit(storedValues)
+    navigate(-1, { viewTransition: true })
   }
     // Lomakkeen alkutila
   const initialState = {
@@ -20,9 +29,10 @@ function ItemForm(props) {
     // Haetaan lomakkeen state ja käsittelijät custom-hookista.
   const {values, handleChange, handleSubmit } = useForm(submit, initialState, false)
   // Peruuta-painikkeen toiminto
+  // Peruuta-painikkeen toiminto. Ei tallenneta mitään,
+  // palataan takaisin.
   const handleCancel = () => {
-    alert('CANCEL')
-  }
+    navigate(-1, { viewTransition: true })
       return (
       <form onSubmit={handleSubmit}>
         <div className={styles.itemform}>
