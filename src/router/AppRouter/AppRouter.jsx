@@ -18,9 +18,7 @@ function AppRouter(props) {
           element: <Items />,
           loader: () => { return props.data } },
            { path: "add", element: <AddItem onItemSubmit={props.onItemSubmit} /> },
-        { path: "stats", element: <Stats /> },
-        { path: "settings", element: <Settings /> },
-               { path: "edit/:id",
+                  { path: "edit/:id",
           element: <EditItem onItemSubmit={props.onItemSubmit} />,
           loader: ({params}) => {
             const item = props.data.filter(item => item.id === params.id).shift()
@@ -28,13 +26,13 @@ function AppRouter(props) {
               return { item }
             } else {
               throw new Response("Not Found", { status: 404 })
-             }
-          }
-        }
+            }
+          } },
+        { path: "stats", element: <Stats /> },
+        { path: "settings", element: <Settings /> },
       ]
     }
-  ]);
-
+  ])
   return (
     <RouterProvider router={router} />
   )

@@ -40,6 +40,7 @@ function ItemForm(props) {
   // palataan takaisin.
   const handleCancel = () => {
     navigate(-1, { viewTransition: true })
+  }
       return (
       <form onSubmit={handleSubmit}>
         <div className={styles.itemform}>
@@ -72,7 +73,7 @@ function ItemForm(props) {
               <input id='periodEnd' type='date' name='periodEnd' onChange={handleChange} value={values.periodEnd} />
             </div>
             <div>
-              <label htmlFor='recceiver'>Saaja</label>
+              <label htmlFor='receiver'>Saaja</label>
               <input id='receiver' type='text' name='receiver' onChange={handleChange} value={values.receiver} />
             </div>
           </div>
@@ -89,6 +90,5 @@ function ItemForm(props) {
         </form>
       )
     }
-  }
 
 export default ItemForm
