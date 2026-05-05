@@ -1,3 +1,4 @@
+import EditItem from '../../pages/EditItem'
 import AddItem from '../../pages/AddItem'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import ErrorPage from '../../pages/ErrorPage'
@@ -19,6 +20,16 @@ function AppRouter(props) {
            { path: "add", element: <AddItem onItemSubmit={props.onItemSubmit} /> },
         { path: "stats", element: <Stats /> },
         { path: "settings", element: <Settings /> }
+               { path: "edit/:id",
+          element: <EditItem onItemSubmit={props.onItemSubmit} />,
+          loader: ({params}) => {
+            const item = props.data.filter(item => item.id === params.id).shift()
+            if (item) {
+              return { item }
+            } else {
+              throw new Response("Not Found", { status: 404 })
+            }
+          } },
       ]
     }
   ])
