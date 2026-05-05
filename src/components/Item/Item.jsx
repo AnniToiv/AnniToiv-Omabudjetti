@@ -1,3 +1,5 @@
+import { Link } from 'react-router'
+
 import { MdNavigateNext } from 'react-icons/md'
 
 import styles from './Item.module.scss'
@@ -65,8 +67,8 @@ function Item({data, ...props}) {
         <div className={styles.item_receiver}>{data.receiver}</div>
         <div className={styles.item_average}>{average ? average + "/kk" : ""}</div>
       </div>
-      <div className={styles.item_edit}>
-        <MdNavigateNext />
+           <div className={styles.item_edit}>
+        <Link to={"/edit/" + data.id} viewTransition><MdNavigateNext /></Link>
       </div>
     </div>
   )
