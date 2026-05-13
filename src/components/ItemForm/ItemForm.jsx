@@ -41,6 +41,11 @@ function ItemForm(props) {
   const handleCancel = () => {
     navigate(-1, { viewTransition: true })
   }
+    // Käsittelee nykyisen poistamisen.
+  const handleDelete = () => {
+    props.onItemDelete(values.id)
+    navigate(-1, { viewTransition: true })
+  }
       return (
       <form onSubmit={handleSubmit}>
         <div className={styles.itemform}>
@@ -83,9 +88,23 @@ function ItemForm(props) {
             <Button onClick={handleCancel}>PERUUTA</Button>
           </div>
           <div>
-             <Button primary type='submit'>{ props.formData ? "TALLENNA" : "LISÄÄ" }</Button>
-
+                  <Button primary
+                      disabled={values.type &&
+                                values.amount &&
+                                values.paymentDate &&
+                                values.receiver ? "" : "disabled"}
+                      type='submit'>
+                { props.formData ? "TALLENNA" : "LISÄÄ" }
+              </Button>
           </div>
+                    { props.onItemDelete ?
+            <div className={styles.itemform_row}>
+              <div>
+                <Button warning onClick={handleDelete}>POISTA</Button>
+              </div>
+              <div></div>
+            </div>
+            : null }
         </div>
         </form>
       )

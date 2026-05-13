@@ -5,9 +5,21 @@ import testdata from './testdata.js'
 import AppRouter from '../../router/AppRouter'
 
 function App() {
+   // Poistaa rivin sovelluksen datasta id:n perusteella.
+  const handleItemDelete = (id) => {
 
+    // Tehdään kopio nykyisestä datasta.
+    let copy = data.slice()
+
+    // Suodatetaan pois se rivi, jonka id vastaa poistettavaa id:tä.
+    copy = copy.filter(item => item.id !== id)
+
+    // Päivitetään state suodatetulla datalla.
+    setData(copy)
+
+  }
     // Käsittelee ja tallentaa lomakkeelle syötetyistä
-  // tiedoista uuden rivin tai muokkaa olemassaolevaa.
+    // tiedoista uuden rivin tai muokkaa olemassaolevaa.
   // Käsittelee ja tallentaa lomakkeelle syötetyistä 
   // tiedoista uuden rivin tai muokkaa olemassaolevaa.
    // Käsittelee ja tallentaa lomakkeelle syötetyistä
@@ -33,18 +45,19 @@ function App() {
       const aDate = new Date(a.paymentDate)
       const bDate = new Date(b.paymentDate)
       return bDate - aDate
-    })
+ })
 
     // Päivitetään sovelluksen state uudella, käsitellyllä datalla.
     setData(copy)
-  }
-
+}
     // Sovelluksen merkintädata, joka välitetään eteenpäin reitittäjälle.
   const [data, setData] = useState(testdata)
 
   return (
     <>
-          <AppRouter data={data} onItemSubmit={handleItemSubmit} />
+                <AppRouter data={data}
+                 onItemSubmit={handleItemSubmit}
+                 onItemDelete={handleItemDelete} />
     </>
   )
 }
