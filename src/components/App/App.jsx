@@ -5,6 +5,10 @@ import testdata from './testdata.js'
 import AppRouter from '../../router/AppRouter'
 
 function App() {
+
+    // Sovelluksen kulutyypit, jotka välitetään eteenpäin reitittäjälle.
+  const [typelist, setTypelist] = useState(["Auto", "Puhelin", "Sähkö", "Vero", "Vesi"])
+
    // Poistaa rivin sovelluksen datasta id:n perusteella.
   const handleItemDelete = (id) => {
 
@@ -55,7 +59,8 @@ function App() {
 
   return (
     <>
-                <AppRouter data={data}
+                     <AppRouter data={data}
+                 typelist={typelist}
                  onItemSubmit={handleItemSubmit}
                  onItemDelete={handleItemDelete} />
     </>
