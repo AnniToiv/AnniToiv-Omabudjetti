@@ -1,3 +1,4 @@
+import { LabelList, Legend, Pie, PieChart } from 'recharts'
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import styles from './Stats.module.scss'
 
@@ -60,6 +61,17 @@ function Stats(props) {
                                })
                              )
 
+                               // Toinen reducer-funktio, joka ryhmittelee ja yhdistää tiedot
+  // type-kentän perusteella.
+  const reduceByType = (resultData, item) => {
+    return reducer(resultData, item, 'type')
+  }
+
+  // Muodostetaan piirakkakaavion data ryhmittelemällä merkinnät
+  // type-kentän mukaan.
+  const piedata = props.data.reduce(reduceByType, [])
+
+
   return (
     <div className={styles.stats}>
         <h2>Tilastot</h2>
@@ -84,6 +96,22 @@ function Stats(props) {
                    } />
         </LineChart>
       </ResponsiveContainer>
+            <h3>Kulut kulutyypeittäin</h3>
+      <ResponsiveContainer height={400}>
+                <PieChart>
+          <Pie data={piedata} dataKey='amount' nameKey='type'>
+            <LabelList dataKey='amount'
+                       position='inside'
+                       fill='white'
+                       formatter={
+                         value => numberFormat.format(value)
+                       } />
+          </Pie>
+          <Legend />
+          <Tooltip formatter={ value => numberFormat.format(value) } />
+        </PieChart>
+      </ResponsiveContainer>
+
     </div>
   )
 }
