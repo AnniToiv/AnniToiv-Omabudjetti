@@ -6,6 +6,8 @@ import AppRouter from '../../router/AppRouter'
 
 function App() {
 
+      // Sovelluksen merkintädata, joka välitetään eteenpäin reitittäjälle.
+  const [data, setData] = useLocalStorage('omabudjetti-data',[])
     // Sovelluksen kulutyypit, jotka välitetään eteenpäin reitittäjälle.
     const [typelist, setTypelist] = useLocalStorage('omabudjetti-typelist',[])
 
@@ -54,8 +56,6 @@ function App() {
     // Päivitetään sovelluksen state uudella, käsitellyllä datalla.
     setData(copy)
 }
-    // Sovelluksen merkintädata, joka välitetään eteenpäin reitittäjälle.
-  const [data, setData] = useLocalStorage('omabudjetti-data',[])
 
     // Käsittelee uuden tyypin lisäyksen, lisää annetun
   // type-arvon typelist-taulukkoon, järjestää listan
