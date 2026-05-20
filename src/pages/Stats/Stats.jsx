@@ -1,6 +1,25 @@
+import randomColor from 'randomcolor'
 import { LabelList, Legend, Pie, PieChart } from 'recharts'
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import styles from './Stats.module.scss'
+
+/**
+ * Näyttää kulutustiedoista muodostetut tilastot kaavioina.
+ *
+ * Komponentti muodostaa annetusta datasta kaksi visualisointia:
+ * - viivakaavion maksujen summista päivämäärittäin
+ * - piirakkakaavion maksujen summista kulutyypeittäin
+ *
+ * Lisäksi komponentti muotoilee euromäärät ja päivämäärät
+ * suomen lokaaliasetusten mukaisesti.
+ *
+ * @param {Object} props - Komponentille välitettävät propsit.
+ * @param {Array<Object>} props.data - Tilastoitavat kulurivit.
+ * @param {string} props.data[].paymentDate - Maksun päivämäärä.
+ * @param {number} props.data[].amount - Maksettu summa euroina.
+ * @param {string} props.data[].type - Kulun tyyppi.
+ * @returns {JSX.Element} Tilastonäkymä, joka sisältää viiva- ja piirakkakaavion.
+ */
 
 function Stats(props) {
 
@@ -71,6 +90,24 @@ function Stats(props) {
   // type-kentän mukaan.
   const piedata = props.data.reduce(reduceByType, [])
 
+    // Luodaan taulukko satunnaisia väriarvoja. Väriarvojen määrä
+  // vastaa piedata-taulukon alkioiden lukumäärää, jotta jokaiselle
+  // Pie-osuudelle voidaan asettaa oma fill-väri
+  const piecolors = randomColor({ count: piedata.length,
+                                  seed: 'siemenluku',
+                                  luminosity: 'dark' })
+
+
+    // Muodostetaan uusi taulukko, jossa jokaisesta piedata-taulukon
+  // alkiosta tehdään kopio ja kopioon lisätään fill-kenttä.
+  // fill-kentän arvo haetaan piecolors-taulukosta saman indeksin
+  // kohdalta, jolloin jokainen PieChartin data-alkio saa oman
+  // väriarvonsa.
+  const pieWithColors = piedata.map((item, index) => ({
+    ...item,
+    fill: piecolors[index]
+  }))
+
 
   return (
     <div className={styles.stats}>
@@ -99,7 +136,7 @@ function Stats(props) {
             <h3>Kulut kulutyypeittäin</h3>
       <ResponsiveContainer height={400}>
                 <PieChart>
-          <Pie data={piedata} dataKey='amount' nameKey='type'>
+                   <Pie data={pieWithColors} dataKey='amount' nameKey='type'>
             <LabelList dataKey='amount'
                        position='inside'
                        fill='white'
@@ -111,7 +148,6 @@ function Stats(props) {
           <Tooltip formatter={ value => numberFormat.format(value) } />
         </PieChart>
       </ResponsiveContainer>
-
     </div>
   )
 }
