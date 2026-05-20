@@ -1,13 +1,13 @@
-import { useState } from 'react'
+import useLocalStorage from '../../shared/hooks/uselocalstorage'
 
-import testdata from './testdata.js'
+import { useState } from 'react'
 
 import AppRouter from '../../router/AppRouter'
 
 function App() {
 
     // Sovelluksen kulutyypit, jotka välitetään eteenpäin reitittäjälle.
-  const [typelist, setTypelist] = useState(["Auto", "Puhelin", "Sähkö", "Vero", "Vesi"])
+    const [typelist, setTypelist] = useLocalStorage('omabudjetti-typelist',[])
 
    // Poistaa rivin sovelluksen datasta id:n perusteella.
   const handleItemDelete = (id) => {
@@ -55,14 +55,25 @@ function App() {
     setData(copy)
 }
     // Sovelluksen merkintädata, joka välitetään eteenpäin reitittäjälle.
-  const [data, setData] = useState(testdata)
+  const [data, setData] = useLocalStorage('omabudjetti-data',[])
+
+    // Käsittelee uuden tyypin lisäyksen, lisää annetun
+  // type-arvon typelist-taulukkoon, järjestää listan
+  // ja päivittää staten.
+  const handleTypeSubmit = (type) => {
+    let copy = typelist.slice()
+    copy.push(type)
+    copy.sort()
+    setTypelist(copy)
+  }
 
   return (
     <>
-                     <AppRouter data={data}
+               <AppRouter data={data}
                  typelist={typelist}
                  onItemSubmit={handleItemSubmit}
-                 onItemDelete={handleItemDelete} />
+                 onItemDelete={handleItemDelete}
+                 onTypeSubmit={handleTypeSubmit} />
     </>
   )
 }
