@@ -1,3 +1,4 @@
+import Loader from '../../pages/Loader'
 import EditItem from '../../pages/EditItem'
 import AddItem from '../../pages/AddItem'
 import { createBrowserRouter, RouterProvider } from 'react-router'
@@ -49,6 +50,7 @@ function AppRouter(props) {
       path: "/",
       element: <MainLayout />,
       errorElement: <ErrorPage />,
+      hydrateFallbackElement: <Loader />,
       children: [
         { path: "", 
           element: <Items />,

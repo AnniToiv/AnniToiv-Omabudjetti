@@ -109,10 +109,13 @@ function Stats(props) {
   }))
 
 
-  return (
+   return (
     <div className={styles.stats}>
-        <h2>Tilastot</h2>
-              <h3>Kulut aikajanalla</h3>
+      <h2>Tilastot</h2>
+
+      { props.data.length ? <>
+
+      <h3>Kulut aikajanalla</h3>
       <ResponsiveContainer height={350}>
         <LineChart data={linedata} type='monotone'>
           <Line dataKey='amount' />
@@ -148,6 +151,7 @@ function Stats(props) {
           <Tooltip formatter={ value => numberFormat.format(value) } />
         </PieChart>
       </ResponsiveContainer>
+      </> : <div className={styles.stats_empty}>Tilastotietoja ei ole saatavilla. Syötä kulutietoja.</div> }
     </div>
   )
 }
