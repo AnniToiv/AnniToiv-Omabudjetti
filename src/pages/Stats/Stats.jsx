@@ -23,14 +23,15 @@ import styles from './Stats.module.scss'
 
 function Stats(props) {
 
+      // Käytettävä lokaaliasetus päivämäärän muotoiluun.
+  const locale = "fi-FI"
+
     // Luodaan NumberFormat-olio euromääräisten summien esittämiseen.
   const numberFormat = new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: 'EUR'
   })
 
-    // Käytettävä lokaaliasetus päivämäärän muotoiluun.
-  const locale = "fi-FI"
 
     // Yleiskäyttöinen reducer-funktio reduce()-metodia varten.
   // Funktio käy läpi yhden item-olion kerrallaan ja kerää

@@ -45,7 +45,7 @@
 
 .button_warning {
   background-color: var(--warning);
-  color: var(--neutral --neutral-lightest)
+  color: var(--neutral-lightest)
 }
 
 .button_floating {

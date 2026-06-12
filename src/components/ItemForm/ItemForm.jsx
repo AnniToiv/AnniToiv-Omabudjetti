@@ -50,6 +50,7 @@ import styles from './ItemForm.module.scss'
 
 
 function ItemForm(props) {
+  const navigate = useNavigate()
     // Lomakkeen varsinainen submit-toiminto
     // Lomakkeen varsinainen submit-toiminto, kutsuu
   // App-komponentilta välitettyä handleItemSubmit-funtiota
